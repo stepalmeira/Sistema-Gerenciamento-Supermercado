@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="conteudo-pagina">
+    <h1 class="titulo-pagina">Histórico de vendas</h1>
+
+    <!-- Card de Busca -->
+    <section class="card-longo">
+        <h3>Filtrar por período</h3>
+        <div style="display: flex; align-items: end; gap:12px; margin-bottom:14px;">
+            <div>
+                <span>De:</span>
+                <input type="date" id="data-inicio"/>
+            </div>
+            <div>
+                <span>Até:</span>
+                <input type="date" id="data-fim"/>
+            </div>
+            <div>
+                <button class="btn" style="width: 120px;" onclick="filtrarVendas()">Buscar</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tabela de Resultados -->
+    <section class="card-longo">
+        <h3>Resultado da Busca</h3>
+        <table class="tabela">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Data</th>
+                    <th>Funcionário responsável</th>
+                    <th>Valor total</th>
+                    <th>Forma de pagamento</th>
+                    <th>Qtd parcelas</th>
+                </tr>
+            </thead>
+            <tbody id="historico-body">
+                <tr><td colspan="6" style="text-align:center; color: #8a8a8a;">Escolha um período para filtrar</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/historico.js') }}"></script>
+{% endblock %}

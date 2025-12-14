@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="conteudo-pagina">
+    <h1 class="titulo-pagina">Gestão de Estoque</h1>
+
+    <!-- ÁREA DE CADASTRO RÁPIDO -->
+    <div style="display: flex; gap: 20px;">
+        
+        <!-- Cadastrar Lote -->
+        <section class="card-longo" style="flex: 2;">
+            <h3>📥 Entrada de Lote (Compra)</h3>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom:10px">
+                <div>
+                    <span>Código de barras</span>
+                    <input id="lote-prod" placeholder="Cód. Barras Produto" />
+                </div>
+                <div>
+                    <span>Fornecedor</span>
+                    <select id="lote-forn" placeholder="ID Fornecedor">
+                        <option value="">Selecione um fornecedor</option>
+                    </select>
+                </div>
+                <div>
+                    <span>Quantidade</span>
+                    <input id="lote-qtd" placeholder="Quantidade" type="number" />
+                </div>
+                <div>
+                    <span>Preço de compra (Unidade)</span>
+                    <input id="lote-preco" placeholder="Preço Compra (Unidade)" type="text"/>
+                    <!-- <input id="lote-preco" placeholder="Preço Compra (Un)" type="number" step="0.01" /> -->
+                </div>
+                <div>
+                    <span>Data do recebimento</span>
+                    <input id="lote-data" type="date" title="Data Recebimento" />
+                </div>
+                <div>
+                    <span>Data de validade</span>
+                    <input id="lote-val" type="date" title="Data Validade" />
+                </div>
+            </div>
+            <button class="btn" onclick="cadastrarLote()" style="width:100%">Registrar Entrada</button>
+        </section>
+
+        <!-- Cadastrar Fornecedor -->
+        <section class="card-longo" style="flex: 1;">
+            <h3>🚚 Novo Fornecedor</h3>
+            <div>
+                <span>Nome da Empresa</span>
+                <input id="forn-nome" placeholder="Ex: Distribuidora ABC LTDA" style="margin-bottom:10px" />
+            </div>
+
+            <div>
+                <span>CNPJ da Empresa</span>
+                <input id="forn-cod" placeholder="Insira o CNPJ" style="margin-bottom:10px" />
+            </div>
+
+            <div>
+                <span>Data da Contratação</span>
+                <input id="forn-data" type="date" title="Data Contratação" style="margin-bottom:10px" />
+            </div>
+            <button class="btn" onclick="cadastrarFornecedor()" style="width:100%">Salvar Fornecedor</button>
+        </section>
+    </div>
+
+    <!-- Card de Busca de produtos -->
+    <section class="card-longo">
+        <h3> 🔍️ Consultar produto em estoque</h3>
+        <div style="display:flex;gap:12px;margin-bottom:14px; align-items: flex-end;">
+
+            <div style="width: 60%;">
+                <span>Busca por descrição</span>
+                <input id="busca-descricao" placeholder="Insira o nome do produto" style="flex: 2; padding:12px; border-radius:10px; border:1px solid #ddd;" oninput="toggleFilters()" />
+            </div>
+
+            <div style="width: 40%; gap:12px">
+                <span>Categoria</span>
+                <select id="filtro-categoria" style="flex: 1;" onchange="toggleFilters()">
+                    <option value="">Selecione uma categoria</option>
+                </select>    
+            </div>
+            <button class="btn" style="width: 150px;" onclick="filtrarProdutosEmEstoque()">Buscar</button>
+
+        </div>
+        
+        <!-- <h3 style="padding-top: 10px;">Resultado da Busca</h3> -->
+        <table class="tabela" style="margin-top: 30px;">
+            <thead >
+                <tr>
+                    <th>Código de barras</th>
+                    <th>Descrição</th>
+                    <th>Categoria</th>
+                    <th>Qtd em estoque</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="produtos_em_estoque-body">
+                <tr><td colspan="5" style="text-align:center">Filte o produto acima</td></tr>
+            </tbody>
+        </table>
+
+    </section>
+
+
+        <!-- Cadastro de novo produto -->
+    <section class="card-longo">
+        <h3>🍉 Cadastrar Novo Produto</h3>
+        <div style="display:flex; gap:12px; margin-bottom:14px">
+            <input id="prod-barras" placeholder="Código de barras" style="flex:1;padding:12px;border:1px solid #ddd;border-radius:5px" />
+            <input id="prod-nome" placeholder="Nome do produto" style="flex:1;padding:12px;border:1px solid #ddd;border-radius:5px" />
+        </div>
+        <div style="display:flex;gap:12px;margin-bottom:14px">
+            <input id="prod-categoria" placeholder="Categoria/Tipo" style="flex:1;padding:12px;border:1px solid #ddd;border-radius:5px" />
+            <input id="prod-preco" placeholder="Preço de venda" type="text" style="flex:1;padding:12px;border:1px solid #ddd;border-radius:5px" />
+            <input id="prod-estoque-min" placeholder="Estoque mínimo" type="number" style="flex:1;padding:12px;border:1px solid #ddd;border-radius:5px" />
+            <button class="btn" onclick="cadastrarProduto()" style="width:150px">Cadastrar</button>
+        </div>
+    </section>
+
+</section>
+
+
+
+
+    <!-- LISTAGEM
+    <section class="card-longo">
+        <h3>📦 Estoque Atual (Lotes)</h3>
+        <table class="tabela">
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Código de barras</th>
+                    <th>Lote</th>
+                    <th>Quantidade</th>
+                    <th>Validade</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody id="estoque-body">
+            
+            </tbody>
+        </table>
+    </section> -->
+    
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/estoque.js') }}"></script>
+{% endblock %}

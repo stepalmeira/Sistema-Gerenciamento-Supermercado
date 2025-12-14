@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="conteudo-pagina">
+    <h1 class="titulo-pagina">Gestão de Funcionários</h1>
+
+    <!-- Card de Busca -->
+    <section class="card-longo">
+        <h3>🔍️ Buscar</h3>
+        <div style="display:flex;gap:12px;margin-bottom:14px; align-items: flex-start;">
+
+            <div style="width: 50%;">
+                <input id="busca-cpf" placeholder="Buscar por CPF exato" style="flex: 2; padding:12px; border-radius:10px; border:1px solid #ddd;" oninput="toggleFilters()" />
+                <span style="color: #999999; font-size: 13px; padding-left: 5px;">CPFs de exemplo: 88990011223, 61029384756, 29384756102, 99887766554</span>
+                
+            </div>
+
+            <div style="display: flex; width: 50%; gap:12px">
+                
+                <select id="filtro-setor" style="flex: 1;" onchange="toggleFilters()">
+                    <option value="">Filtrar por Setor</option>
+                </select>    
+                <button class="btn" style="width: 150px;" onclick="filtrarFuncionarios()">Buscar</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Tabela de Resultados -->
+    <section class="card-longo">
+        <h3>Resultado da Busca</h3>
+        <table class="tabela">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Cargo</th>
+                    <th>Setor</th>
+                    <th>Salário</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody id="funcionarios-body">
+                <tr><td colspan="5" style="text-align:center">Digite um CPF acima para buscar</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Cadastro -->
+    <section class="card-longo">
+        <h3>👤 Cadastrar Novo</h3>
+        <div style="display:flex; gap:12px; margin-bottom:14px">
+            <input id="nome_funcionario" placeholder="Nome completo" style="flex:1;padding:12px;border:1px solid #ddd;border-radius:5px" />
+            <input id="cpf_funcionario" placeholder="CPF (somente números)" style="flex:1;padding:12px;border:1px solid #ddd;border-radius:5px" />
+        </div>
+        <div style="display:flex;gap:12px;margin-bottom:14px">
+            <input id="endereco_funcionario" placeholder="Endereço completo" style="flex:1;padding:12px;border:1px solid #ddd;border-radius:5px" />
+        </div>
+        <div style="display:flex;gap:12px;margin-bottom:14px">
+            <!-- Selects serão preenchidos pelo JS -->
+            <select style="width: 30%;"><option>Carregando cargos...</option></select>
+            <select style="width: 30%;"><option>Carregando setores...</option></select>
+            <select style="width: 20%;"><option>Gênero</option></select>
+            <button class="btn" onclick="addFuncionario()">Cadastrar</button>
+        </div>
+    </section>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/funcionarios.js') }}"></script>
+{% endblock %}

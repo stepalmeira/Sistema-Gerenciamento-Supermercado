@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supermercado Castelus</title>
+
+    <!-- DEIXE APENAS ESTA LINHA DE CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    {% block styles %}{% endblock %}
+</head>
+<body>
+
+    <!-- Container Flex para colocar menu ao lado do conteúdo -->
+    <div class="app-container">
+        
+        <!-- Menu Lateral -->
+        {% include 'menu_lateral.html' %}
+
+        <!-- Conteúdo Principal -->
+        <main style="flex: 1; padding: 30px; background-color: #f4f6f8; overflow-y: auto; margin-left: 260px">
+            {% block content %}
+            {% endblock %}
+        </main>
+    </div>
+
+    <!-- Scripts do Menu e Globais -->
+    <script src="{{ url_for('static', filename='js/menu_lateral.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

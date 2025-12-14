@@ -1,2 +1,0 @@
-# Relatório de aprendizado
-    

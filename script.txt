@@ -27,7 +27,7 @@ CREATE TABLE Lote(
 CREATE TABLE Setor(
 	cod_setor SERIAL PRIMARY KEY,
 	nome_setor VARCHAR(255) NOT NULL,
-	--FOREIGN KEY (cpf_gerente) REFERENCES Funcionário(cpf) adicionar dps pq funcionário referencia setor
+	--FOREIGN KEY (cpf_gerente) REFERENCES Funcionário(cpf)
 );
 
 CREATE TABLE Venda(
@@ -91,4 +91,280 @@ ALTER TABLE Venda
 	ADD CONSTRAINT fk_funcionario_venda FOREIGN KEY (cpf_funcionario) REFERENCES Funcionario(cpf);
 
 
+INSERT INTO Fornecedor (cod_fornecedor, nome_fornecedor, data_contratacao) VALUES 
+(10, 'Distribuidora Alvorada Ltda', '2022-01-15'),
+(20, 'Frigorífico Boi Gordo S.A.', '2023-03-10'),
+(30, 'Moinho Santo André', '2023-05-20'),
+(40, 'Atacadista Central de Bebidas', '2021-11-05');
+
+INSERT INTO Setor (cod_setor, nome_setor, cpf_gerente) VALUES 
+(1, 'Açougue', NULL),
+(2, 'Padaria', NULL),
+(3, 'Frente de Loja', NULL),
+(4, 'Financeiro', NULL);
+
+INSERT INTO Produto (cod_barras, nome, tipo_produto, preco_venda, estoque_minimo) VALUES
+('7891000100', 'Picanha Bovina Kg', 'Carne', 89.90, 10),
+('7891000101', 'Alcatra Kg', 'Carne', 45.50, 15),
+('7891000102', 'Frango Inteiro Kg', 'Carne', 14.50, 20),
+('7891000103', 'Carne Moída Kg', 'Carne', 32.00, 20),
+('7891000104', 'Linguiça Toscana Kg', 'Carne', 22.90, 25),
+('7892000200', 'Pão Francês Kg', 'Padaria', 18.90, 5),
+('7892000201', 'Pão de Queijo Kg', 'Padaria', 28.90, 5),
+('7892000202', 'Bolo de Fubá Un', 'Padaria', 15.00, 3),
+('7892000203', 'Sonho de Creme Un', 'Padaria', 4.50, 10),
+('7892000204', 'Baguete Un', 'Padaria', 7.00, 5),
+('7893000300', 'Arroz Branco 5kg', 'Mercearia', 25.90, 50),
+('7893000301', 'Feijão Carioca 1kg', 'Mercearia', 8.50, 50),
+('7893000302', 'Óleo de Soja 900ml', 'Mercearia', 6.50, 40),
+('7893000303', 'Açúcar Refinado 1kg', 'Mercearia', 4.80, 40),
+('7893000304', 'Sal 1kg', 'Mercearia', 2.50, 30),
+('7893000305', 'Café Torrado 500g', 'Mercearia', 18.90, 30),
+('7893000306', 'Leite UHT 1L', 'Laticínios', 5.20, 60),
+('7893000307', 'Manteiga 200g', 'Laticínios', 12.50, 20),
+('7893000308', 'Iogurte Natural', 'Laticínios', 4.00, 20),
+('7893000309', 'Queijo Mussarela Kg', 'Laticínios', 49.00, 10),
+('7894000400', 'Detergente Líquido', 'Limpeza', 2.90, 40),
+('7894000401', 'Sabão em Pó 1kg', 'Limpeza', 14.90, 20),
+('7894000402', 'Água Sanitária 2L', 'Limpeza', 6.50, 20),
+('7894000403', 'Amaciante 2L', 'Limpeza', 18.90, 15),
+('7894000404', 'Esponja de Aço', 'Limpeza', 3.50, 30),
+('7895000500', 'Shampoo 350ml', 'Higiene', 15.00, 15),
+('7895000501', 'Sabonete 90g', 'Higiene', 3.20, 40),
+('7895000502', 'Pasta de Dente', 'Higiene', 5.50, 30),
+('7895000503', 'Papel Higiênico 12un', 'Higiene', 22.90, 20),
+('7895000504', 'Desodorante Spray', 'Higiene', 14.00, 15),
+('7896000600', 'Refrigerante Cola 2L', 'Bebida', 9.50, 40),
+('7896000601', 'Guaraná 2L', 'Bebida', 8.00, 40),
+('7896000602', 'Suco de Laranja 1L', 'Bebida', 10.00, 30),
+('7896000603', 'Cerveja Lata 350ml', 'Bebida', 3.80, 100),
+('7896000604', 'Água Mineral 500ml', 'Bebida', 2.50, 50),
+('7897000700', 'Chocolate Barra', 'Doces', 7.00, 30),
+('7897000701', 'Bolacha Recheada', 'Doces', 3.50, 40),
+('7897000702', 'Bala de Goma', 'Doces', 4.00, 20),
+('7897000703', 'Chiclete', 'Doces', 1.50, 50),
+('7897000704', 'Paçoca Rolha', 'Doces', 1.00, 50),
+('7898000800', 'Caderno 96fls', 'Bazar', 15.00, 10),
+('7898000801', 'Caneta Azul', 'Bazar', 2.50, 20),
+('7898000802', 'Lápis Preto', 'Bazar', 1.50, 20),
+('7898000803', 'Pilha AA c/4', 'Bazar', 12.00, 10),
+('7898000804', 'Fósforo pct', 'Bazar', 5.00, 10),
+('7899000900', 'Ração Cães 1kg', 'Pet', 18.00, 10),
+('7899000901', 'Ração Gatos 1kg', 'Pet', 20.00, 10),
+('7899000902', 'Petisco Cães', 'Pet', 8.00, 15),
+('7899000903', 'Areia Sanitária Gato', 'Pet', 12.00, 10),
+('7899000904', 'Shampoo Pet', 'Pet', 25.00, 5);
+
+INSERT INTO Funcionario (cpf, nome_completo, cod_setor, cargo, genero, endereco, salario) VALUES
+('52938471022', 'Roberto Justus', 1, 'Gerente', 'M', 'Av. Paulista, 1500, São Paulo', 7500.00), -- Gerente
+('10293847561', 'Cleber Machado', 1, 'Açougueiro', 'M', 'Rua das Rosas, 123, Osasco', 2200.00),
+('93847561029', 'Maria da Glória', 1, 'Açougueiro', 'F', 'Av. Brasil, 500, São Paulo', 2200.00),
+('84756102938', 'José Bonifácio', 1, 'Açougueiro', 'M', 'Rua Augusta, 10, São Paulo', 2200.00),
+('75610293847', 'Amanda Silva', 1, 'Açougueiro', 'F', 'Rua da Mooca, 88, São Paulo', 2200.00);
+
+INSERT INTO Acougueiro (cpf, certificacao, epi_entregue) VALUES
+('52938471022', 'Gestão de Carnes', TRUE), -- Gerente também está na tabela de especialização se atuar
+('10293847561', 'Cortes Nobres', TRUE),
+('93847561029', 'Básico', TRUE),
+('84756102938', 'Desossa', TRUE),
+('75610293847', 'Básico', TRUE);
+
+INSERT INTO Funcionario (cpf, nome_completo, cod_setor, cargo, genero, endereco, salario) VALUES
+('61029384756', 'Paola Carosella', 2, 'Gerente', 'F', 'Rua Artur de Azevedo, 200, São Paulo', 7200.00), -- Gerente
+('29384756102', 'Henrique Fogaça', 2, 'Padeiro', 'M', 'Rua dos Pinheiros, 1100, São Paulo', 2100.00),
+('47561029384', 'Olivier Anquier', 2, 'Padeiro', 'M', 'Praça da República, 50, São Paulo', 2100.00),
+('56102938475', 'Bela Gil', 2, 'Padeiro', 'F', 'Av. Brigadeiro Faria Lima, 3000, São Paulo', 2100.00),
+('38475610293', 'Claude Troisgros', 2, 'Padeiro', 'M', 'Rua Oscar Freire, 900, São Paulo', 2100.00);
+
+INSERT INTO Padeiro (cpf, certificacao, epi_entregue) VALUES
+('61029384756', 'Patisserie Francesa', TRUE),
+('29384756102', 'Fermentação Natural', TRUE),
+('47561029384', 'Confeitaria', TRUE),
+('56102938475', 'Pães Integrais', TRUE),
+('38475610293', 'Alta Gastronomia', TRUE);
+
+INSERT INTO Funcionario (cpf, nome_completo, cod_setor, cargo, genero, endereco, salario) VALUES
+('99887766554', 'Luciano Huck', 3, 'Gerente', 'M', 'Estrada da Gávea, 500, Rio de Janeiro', 6800.00), -- Gerente
+('11223344556', 'Xuxa Meneghel', 3, 'Operador de Caixa', 'F', 'Av. das Américas, 2000, Rio de Janeiro', 1600.00),
+('22334455667', 'Angélica Ksyvickis', 3, 'Operador de Caixa', 'F', 'Rua do Catete, 100, Rio de Janeiro', 1600.00),
+('33445566778', 'Eliana Michaelichen', 3, 'Operador de Caixa', 'F', 'Av. Angelica, 400, São Paulo', 1600.00),
+('44556677889', 'Rodrigo Faro', 3, 'Operador de Caixa', 'M', 'Alameda Jau, 800, São Paulo', 1600.00),
+('55667788990', 'Marcos Mion', 3, 'Operador de Caixa', 'M', 'Rua Itapeva, 200, São Paulo', 1600.00),
+('66778899001', 'Serginho Groisman', 3, 'Operador de Caixa', 'M', 'Rua Pamplona, 550, São Paulo', 1600.00),
+('77889900112', 'Tatá Werneck', 3, 'Operador de Caixa', 'F', 'Rua Visconde de Pirajá, 50, Rio de Janeiro', 1600.00);
+
+INSERT INTO Operador (cpf, posto_pdv) VALUES
+('99887766554', 'Central de Atendimento'),
+('11223344556', 'PDV-01'),
+('22334455667', 'PDV-02'),
+('33445566778', 'PDV-03'),
+('44556677889', 'PDV-04'),
+('55667788990', 'PDV-05'),
+('66778899001', 'PDV-06'),
+('77889900112', 'PDV-07');
+
+INSERT INTO Funcionario (cpf, nome_completo, cod_setor, cargo, genero, endereco, salario) VALUES
+('88990011223', 'William Bonner', 4, 'Gerente', 'M', 'Rua Jardim Botânico, 900, Rio de Janeiro', 9000.00), -- Gerente
+('00112233445', 'Renata Vasconcellos', 4, 'Analista Financeiro', 'F', 'Av. Vieira Souto, 100, Rio de Janeiro', 4500.00);
+
+INSERT INTO Analista_financeiro (cpf, certificacao) VALUES
+('88990011223', 'MBA Gestão'),
+('00112233445', 'CPA-10');
+
+UPDATE Setor SET cpf_gerente = '52938471022' WHERE cod_setor = 1; -- Roberto Justus (Açougue)
+UPDATE Setor SET cpf_gerente = '61029384756' WHERE cod_setor = 2; -- Paola Carosella (Padaria)
+UPDATE Setor SET cpf_gerente = '99887766554' WHERE cod_setor = 3; -- Luciano Huck (Frente Loja)
+UPDATE Setor SET cpf_gerente = '88990011223' WHERE cod_setor = 4; -- William Bonner (Financeiro)
+
+INSERT INTO Lote (quantidade, cod_fornecedor, cod_produto, preco_compra, data_recebimento, data_validade) VALUES
+(100, 20, '7891000100', 50.00, '2024-01-10', '2024-02-28'), -- Picanha (Forn: Boi Gordo)
+(500, 30, '7892000200', 0.50, '2024-02-01', '2024-02-05'), -- Pão Francês (Forn: Moinho)
+(200, 40, '7896000603', 1.80, '2024-01-15', '2024-12-31'), -- Cerveja (Forn: Bebidas)
+(300, 10, '7893000300', 15.00, '2024-01-20', '2024-08-20'), -- Arroz (Forn: Alvorada)
+(50, 20, '7891000102', 8.00, '2024-02-10', '2024-02-25'), -- Frango
+(1000, 30, '7893000303', 2.50, '2024-01-05', '2025-01-01'), -- Açúcar
+(150, 40, '7896000600', 5.00, '2024-02-12', '2024-10-10'), -- Cola
+(200, 10, '7894000401', 8.00, '2024-01-30', '2026-01-01'), -- Sabão em pó
+(80, 20, '7891000104', 12.00, '2024-02-15', '2024-03-15'), -- Linguiça
+(500, 10, '7895000503', 10.00, '2024-01-10', '2027-01-10'); -- Papel Higiênico
+
+INSERT INTO Venda (cod_venda, data_venda, valor_total, forma_pagamento, qntd_parcelas, valor_desconto, cpf_funcionario) VALUES
+(1, '2024-03-01', 150.00, 'Dinheiro', 1, 0.00, '11223344556'),
+(2, '2024-03-01', 45.90, 'Débito', 1, 0.00, '22334455667'),
+(3, '2024-03-01', 300.50, 'Crédito', 3, 10.00, '33445566778'),
+(4, '2024-03-01', 12.00, 'PIX', 1, 0.00, '44556677889'),
+(5, '2024-03-02', 89.90, 'Crédito', 1, 0.00, '55667788990'),
+(6, '2024-03-02', 210.00, 'Débito', 1, 0.00, '66778899001'),
+(7, '2024-03-02', 15.50, 'Dinheiro', 1, 0.00, '77889900112'),
+(8, '2024-03-03', 55.00, 'PIX', 1, 0.00, '11223344556'),
+(9, '2024-03-03', 120.00, 'Crédito', 2, 0.00, '22334455667'),
+(10, '2024-03-03', 9.90, 'Dinheiro', 1, 0.00, '33445566778'),
+(11, '2024-03-04', 400.00, 'Crédito', 4, 0.00, '44556677889'),
+(12, '2024-03-04', 32.00, 'Débito', 1, 0.00, '55667788990'),
+(13, '2024-03-04', 75.50, 'PIX', 1, 2.50, '66778899001'),
+(14, '2024-03-05', 100.00, 'Crédito', 1, 0.00, '77889900112'),
+(15, '2024-03-05', 25.00, 'Dinheiro', 1, 0.00, '11223344556'),
+(16, '2024-03-05', 60.00, 'Débito', 1, 0.00, '22334455667'),
+(17, '2024-03-06', 18.90, 'PIX', 1, 0.00, '33445566778'),
+(18, '2024-03-06', 500.00, 'Crédito', 5, 20.00, '44556677889'),
+(19, '2024-03-06', 42.00, 'Débito', 1, 0.00, '55667788990'),
+(20, '2024-03-07', 30.00, 'Dinheiro', 1, 0.00, '66778899001'),
+(21, '2024-03-07', 115.00, 'Crédito', 2, 0.00, '77889900112'),
+(22, '2024-03-07', 95.00, 'PIX', 1, 0.00, '11223344556'),
+(23, '2024-03-08', 14.50, 'Dinheiro', 1, 0.00, '22334455667'),
+(24, '2024-03-08', 220.00, 'Crédito', 3, 0.00, '33445566778'),
+(25, '2024-03-08', 65.00, 'Débito', 1, 0.00, '44556677889'),
+(26, '2024-03-09', 80.00, 'PIX', 1, 0.00, '55667788990'),
+(27, '2024-03-09', 35.00, 'Dinheiro', 1, 0.00, '66778899001'),
+(28, '2024-03-09', 150.00, 'Crédito', 1, 0.00, '77889900112'),
+(29, '2024-03-10', 19.90, 'Débito', 1, 0.00, '11223344556'),
+(30, '2024-03-10', 250.00, 'Crédito', 2, 5.00, '22334455667'),
+(31, '2024-03-11', 40.00, 'PIX', 1, 0.00, '33445566778'),
+(32, '2024-03-11', 12.00, 'Dinheiro', 1, 0.00, '44556677889'),
+(33, '2024-03-11', 300.00, 'Crédito', 3, 0.00, '55667788990'),
+(34, '2024-03-12', 55.50, 'Débito', 1, 0.00, '66778899001'),
+(35, '2024-03-12', 88.00, 'PIX', 1, 0.00, '77889900112'),
+(36, '2024-03-12', 22.00, 'Dinheiro', 1, 0.00, '11223344556'),
+(37, '2024-03-13', 160.00, 'Crédito', 2, 0.00, '22334455667'),
+(38, '2024-03-13', 90.00, 'Débito', 1, 0.00, '33445566778'),
+(39, '2024-03-13', 110.00, 'PIX', 1, 0.00, '44556677889'),
+(40, '2024-03-14', 45.00, 'Dinheiro', 1, 0.00, '55667788990');
+
+
+CREATE TABLE Usuario (
+    login VARCHAR(50) PRIMARY KEY,
+    senha VARCHAR(255) NOT NULL, -- Em produção, usaríamos hash (MD5/SHA)
+    cpf_funcionario CHAR(11) NOT NULL,
+    FOREIGN KEY (cpf_funcionario) REFERENCES Funcionario(cpf)
+);
+
+INSERT INTO Setor (cod_setor, nome_setor, cpf_gerente) VALUES (5, 'Administração', NULL);
+ 
+INSERT INTO Funcionario (cpf, nome_completo, cod_setor, cargo, genero, endereco, salario) 
+VALUES 
+('20000000002', 'Carlos Alberto', 4, 'Diretor Financeiro', 'M', 'Rua das Contas, 100', 12000.00),
+('30000000003', 'Roberto Carlos', 5, 'Diretor Geral', 'M', 'Av. da Diretoria, 1000', 25000.00);
+
+INSERT INTO Usuario (login, senha, cpf_funcionario) VALUES 
+('financeiro', '1234', '20000000002'),
+('diretor', '1234', '30000000003');
+
+INSERT INTO Venda_Contem_Produto (cod_venda, cod_barras, quantidade) VALUES
+(1, '7891000100', 1), (1, '7893000300', 2), -- Venda 1
+(2, '7892000200', 2), (2, '7896000600', 1), -- Venda 2
+(3, '7891000102', 5), (3, '7895000503', 2), -- Venda 3
+(4, '7893000304', 2), (4, '7897000701', 2), -- Venda 4
+(5, '7891000100', 1), -- Venda 5 (Picanha)
+(6, '7891000104', 5), (6, '7893000300', 2), -- Venda 6
+(7, '7897000700', 2), (7, '7897000703', 1), -- Venda 7
+(8, '7891000101', 1), (8, '7896000601', 1), -- Venda 8
+(9, '7893000306', 12), (9, '7892000204', 5), -- Venda 9
+(10, '7894000400', 3), -- Venda 10
+(11, '7891000100', 3), (11, '7893000309', 2), -- Venda 11
+(12, '7898000800', 2), -- Venda 12
+(13, '7893000305', 4), -- Venda 13
+(14, '7891000103', 3), -- Venda 14
+(15, '7893000300', 1), -- Venda 15
+(16, '7899000900', 2), (16, '7899000902', 3), -- Venda 16
+(17, '7892000200', 1), -- Venda 17
+(18, '7891000100', 5), -- Venda 18
+(19, '7895000500', 2), (19, '7895000501', 3), -- Venda 19
+(20, '7893000302', 4); -- Venda 20
+ON CONFLICT DO NOTHING;
+
+SELECT setval('venda_cod_venda_seq', (SELECT MAX(cod_venda) FROM Venda));
+
+INSERT INTO Funcionario (cpf, nome_completo, cod_setor, cargo, genero, endereco, salario) 
+VALUES 
+('40000000004', 'Juan Jose', 3, 'Operador de Caixa', 'M', 'Rua dos Caixas, 10', 1600.00);
+
+INSERT INTO Usuario (login, senha, cpf_funcionario) VALUES 
+('caixa', '1234', '40000000004');
+
+SELECT setval(pg_get_serial_sequence('venda', 'cod_venda'), (SELECT MAX(cod_venda) FROM venda));
+
+-- Diz ao SQL que o próximo número de cod_fornecedor é 41 (porque o adicionamos alguns fornecedores nesse script) 
+SELECT setval(pg_get_serial_sequence('fornecedor', 'cod_fornecedor'), (SELECT MAX(cod_fornecedor) FROM fornecedor)); 
+
+INSERT INTO Fornecedor (cod_fornecedor, nome_fornecedor, data_contratacao) VALUES 
+(50, 'Laticínios Vale Verde', '2022-06-12'),
+(60, 'Panificadora Trigo de Ouro', '2023-01-20'),
+(70, 'Hortifruti Frescor do Campo', '2023-08-15'),
+(80, 'Indústria de Limpeza Brilho Max', '2021-09-30'),
+(90, 'Bebidas Refrescantes S.A.', '2022-11-11'),
+(100, 'Importadora Vinhos Serra Gaúcha', '2020-05-05'),
+(110, 'Conservas da Vovó Maria', '2023-02-28'),
+(120, 'Grãos e Cereais NutriVida', '2022-04-10'),
+(130, 'Distribuidora Carnes Nobres', '2023-07-01'),
+(140, 'Doces e Salgados Delícia', '2021-12-15'),
+(150, 'Embalagens Papel Sul', '2020-10-20'),
+(160, 'Água Mineral Fonte Azul', '2023-09-05'),
+(170, 'Cervejaria Malte Puro', '2022-03-17'),
+(180, 'Fazenda Ovos de Ouro', '2023-04-25'),
+(190, 'Higiene Pessoal Clean', '2021-08-08'),
+(200, 'Café Aroma da Montanha', '2022-07-30'),
+(210, 'Massas Italianas Bella Vita', '2023-06-10'),
+(220, 'Temperos do Oriente', '2021-05-12'),
+(230, 'Queijaria Artesanal Mineira', '2022-09-22'),
+(240, 'Sorvetes Gelato Real', '2023-10-01'),
+(250, 'Atacadão de Descartáveis Prático', '2021-02-14');
+
+INSERT INTO Lote (quantidade, cod_fornecedor, cod_produto, preco_compra, data_recebimento, data_validade) VALUES
+(200, 50, '7893000306', 3.50, '2024-03-01', '2024-06-01'),  -- Leite UHT (Forn: Laticínios Vale Verde)
+(50, 60, '7892000202', 9.00, '2024-03-02', '2024-03-07'),   -- Bolo de Fubá (Forn: Panificadora Trigo)
+(300, 70, '7893000301', 5.00, '2024-02-15', '2024-08-15'),  -- Feijão Carioca (Forn: Hortifruti Frescor - Adaptado)
+(150, 80, '7894000400', 1.80, '2024-02-25', '2026-02-25'),  -- Detergente Líquido (Forn: Ind. Brilho Max)
+(200, 90, '7896000600', 6.00, '2024-02-28', '2024-08-28'),  -- Refrigerante Cola (Forn: Bebidas Refrescantes)
+(60, 100, '7896000602', 6.50, '2024-01-15', '2024-06-15'),  -- Suco de Laranja (Forn: Imp. Vinhos - Adaptado p/ Bebida)
+(100, 110, '7893000302', 4.20, '2024-03-05', '2025-03-05'), -- Óleo de Soja (Forn: Conservas Vovó - Adaptado)
+(400, 120, '7893000305', 12.00, '2024-02-10', '2025-02-10'),-- Café Torrado (Forn: Grãos NutriVida)
+(60, 130, '7891000101', 32.00, '2024-03-10', '2024-03-25'), -- Alcatra (Forn: Dist. Carnes Nobres)
+(300, 140, '7897000700', 4.50, '2024-02-20', '2025-02-20'), -- Chocolate Barra (Forn: Doces Delícia)
+(100, 150, '7895000503', 15.00, '2024-01-25', '2029-01-25'),-- Papel Higiênico (Forn: Embalagens Papel Sul)
+(500, 160, '7896000604', 1.20, '2024-03-01', '2025-03-01'), -- Água Mineral 500ml (Forn: Água Fonte Azul)
+(100, 170, '7896000603', 2.30, '2024-02-28', '2024-08-28'); -- Cerveja Lata (Forn: Cervejaria Malte Puro)
+
+INSERT INTO Funcionario (cpf, nome_completo, cod_setor, cargo, genero, endereco, salario) VALUES
+('55667788900', 'Fausto Silva', 3, 'Operador de Caixa', 'M', 'Rua Pamplona, 900, São Paulo', 1600.00),
+('66778899011', 'Ana Maria Braga', 3, 'Operador de Caixa', 'F', 'Estrada da Gávea, 1200, Rio de Janeiro', 1600.00);
 
